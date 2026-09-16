@@ -1,16 +1,24 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const EspecificacionSchema = new mongoose.Schema({
+// Subdocumento embebido: EspecificacionProducto
+const especificacionProductoSchema = new mongoose.Schema({
   categoria: { type: String, required: true },
   unidadMedida: { type: String, required: true },
-  marca: { type: String, required: true }
-});
+  marca: { type: String, required: true },
+  fechaExpiracion: { type: Date }
+}, { _id: false }); // _id: false evita generar IDs innecesarios en objetos embebidos
 
-const ProductoSchema = new mongoose.Schema({
+// Colección principal: Productos
+const productoSchema = new mongoose.Schema({
   codigoBarras: { type: String, required: true, unique: true },
   nombre: { type: String, required: true },
   precioVenta: { type: Number, required: true },
-  especificaciones: EspecificacionSchema
+  proveedor_id: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Proveedor', 
+    //required: true 
+  },
+  especificaciones: { type: especificacionProductoSchema, required: true }
 }, { timestamps: true });
 
-export default mongoose.model('Producto', ProductoSchema);
+module.exports = mongoose.model('Producto', productoSchema);
