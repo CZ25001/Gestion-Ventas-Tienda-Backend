@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-// Subdocumento embebido: EspecificacionProducto
+// Subdocumento Embebido: EspecificacionProducto
 const especificacionProductoSchema = new mongoose.Schema({
   categoria: { type: String, required: true },
   unidadMedida: { type: String, required: true },
   marca: { type: String, required: true },
   fechaExpiracion: { type: Date }
-}, { _id: false }); // _id: false evita generar IDs innecesarios en objetos embebidos
+}, { _id: false });
 
-// Colección principal: Productos
+// Colección Principal: Productos
 const productoSchema = new mongoose.Schema({
   codigoBarras: { type: String, required: true, unique: true },
   nombre: { type: String, required: true },
@@ -16,7 +16,7 @@ const productoSchema = new mongoose.Schema({
   proveedor_id: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Proveedor', 
-    //required: true 
+    required: true 
   },
   especificaciones: { type: especificacionProductoSchema, required: true }
 }, { timestamps: true });
