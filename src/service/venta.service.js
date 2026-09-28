@@ -8,3 +8,13 @@ exports.obtenerVentas = async () => {
     .populate('empleado_id')
     .populate('cliente_id');
 };
+
+exports.modificarVenta = async (id, dataVenta) => {
+  return await Venta.findByIdAndUpdate(id, dataVenta, { new: true })
+    .populate('empleado_id')
+    .populate('cliente_id');
+};
+
+exports.removerVenta = async (id) => {
+  return await Venta.findByIdAndDelete(id);
+};

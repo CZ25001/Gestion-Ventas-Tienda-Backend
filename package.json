@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.10.0"
   },
   "name": "gestion-de-tienda-backend",
@@ -10,6 +14,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "seed": "node src/scripts/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

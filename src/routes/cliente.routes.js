@@ -1,7 +1,15 @@
-const router = require('express').Router();
-const controller = require('../controllers/cliente.controller');
+const express = require('express');
+const router = express.Router();
+const clienteController = require('../controllers/cliente.controller');
+const { verificarToken } = require('../middlewares/auth.middleware');
 
-router.post('/', controller.crear);
-router.get('/', controller.obtenerTodos);
+router.use(verificarToken);
+
+router.post('/', clienteController.crear);
+router.get('/', clienteController.obtenerTodos);
+
+// Rutas agregadas
+router.put('/:id', clienteController.actualizar);
+router.delete('/:id', clienteController.eliminar);
 
 module.exports = router;
