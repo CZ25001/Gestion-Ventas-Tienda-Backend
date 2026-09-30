@@ -1,4 +1,5 @@
-const productoService = require('../service/producto.service');
+// corrección de importación
+const productoService = require('../services/producto.service');
 
 exports.crear = async (req, res) => {
   try {
